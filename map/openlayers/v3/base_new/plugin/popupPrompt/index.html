@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JQ弹出层</title>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="plug-in.js"></script>
+<style>
+	.div{
+	background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 0 3px #eee;
+    margin: 40px auto;
+    width: 40%;
+    min-width: 800px;
+    min-height: 500px;
+    border-radius: 3px;
+    padding: 0 0 30px;
+    position: relative;
+	}
+	.div h1{
+	display: block;
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+	margin: 20px;
+	}
+	.div2{
+	padding: 20px;
+    background: #fafafa;
+	border: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+	font-size: 14px;
+	line-height: 20px;
+	}
+	.div3{
+	padding: 20px;
+	background: #2b2f3b;
+	font-size: 12px;
+	color:#fff;
+	line-height: 25px;
+	}
+	input[type=button]{
+	background: #4081BE;
+	padding: 6px 12px;
+    cursor: pointer;
+	border: 0;
+    color: #fff;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+	}
+	.div3 .fff{
+		color:#fff;
+	}
+	ul{
+		position: fixed;
+		top: 100px;
+		left: 50px;
+		z-index: 10;
+		border: 2px solid #ccc;
+		padding: 20px;
+		border-radius: 5px;
+		background-color: #fff;
+		box-shadow: 1px 1px 5px #f9f9f9;
+	}
+	ul b{
+		margin: 5px;
+		width: 100%;
+		display: block;
+		font-size: 16px;
+	}
+	ul a{
+		padding-left: 20px;
+		color:#555;
+		width: 100%;
+		display: block;
+		font-size: 14px;
+		text-decoration:none;
+		line-height: 30px;
+	}
+	input[type=button]:hover{
+		background:#3772A8;
+	}
+	.yushe{
+		background-color: #555!important;
+		color:#fff!important;
+	}
+	.yushe .box-title{
+		color:#fff!important;
+	}
+	</style>
+</head>
+
+<body>
+<ul><b>目录：</b>
+	<A href="#pop"> - $.Pop()弹出层</A>
+	<A href="#pro"> - $.Pro()提示层</A>
+	<A href="#gd"> - 更多</A>
+	
+	</ul>
+<div class="div">
+	<h1>$.Pop()介绍</h1>
+<div class="div2" id="pop">
+	<p>Pop是基于JQ编写的一个弹出层插件，其中使用了大量CSS3效果，内置了CSS样式无需再调用CSS样式，当然您也可以使用自己的CSS样式，扩展能力极强！</p>
+	<p>Pop预设的2个弹窗参数，分别是alert，confirm，均可回调。</p>
+	<input type="button" value="演示" onClick="$.Pop('你好，欢迎使用Pop插件','alert',function(){alert('点击确定的回调')})">
+	
+	</div>
+<div class="div3">
+	<p><span class="fff">$.Pop('</span>你好，欢迎使用Pop插件','alert',function(){alert('点击确定的回调')})</p>
+	
+	</div>	
+	
+	<div class="div2"><input type="button" value="演示" onClick="$.Pop('你好，欢迎使用Pop插件,点击确定返回回调','confirm',function(){alert('点击确定的回调')})"></div>
+	<div class="div3"><p>$.Pop('你好，欢迎使用Pop插件,点击确定返回回调','confirm',function(){alert('点击确定的回调')})</p></div>
+	
+	<div class="div2"><p>预设9个动画,可惜的是需要CSS3的支持。如果不支持CSS3将没有动画效果。只需要配置Animation属性即可，动画代码在弹出层中</p>
+	<input type="button" value="从上到下" onClick="$.Pop('slideFromTop效果',{Animation:'slideFromTop'})">
+	<input type="button" value="从下到上" onClick="$.Pop('slideFromTop效果',{Animation:'slideFromBottom'})">
+	<input type="button" value="弹性显示" onClick="$.Pop('slideFromTop效果',{Animation:'showSweetAlert'})">
+	<input type="button" value="渐入" onClick="$.Pop('slideFromTop效果',{Animation:'layerFadeIn'})">
+	<input type="button" value="从下向上2" onClick="$.Pop('slideFromTop效果',{Animation:'layer-fadeInUpBig'})">
+	<input type="button" value="翻转" onClick="$.Pop('slideFromTop效果',{Animation:'layer-rollIn'})">
+	<input type="button" value="渐入2" onClick="$.Pop('slideFromTop效果',{Animation:'layer-fadeIn'})">
+	<input type="button" value="晃动" onClick="$.Pop('slideFromTop效果',{Animation:'layer-shake'})">
+	<input type="button" value="横向扩展" onClick="$.Pop('slideFromTop效果',{Animation:'layer-spread'})">
+	</div>
+	<div class="div3">
+	$.Pop('slideFromTop效果',{Animation:'slideFromTop'})
+	</div>
+	<div class="div2"><p>可以使用多个按钮，最多可以使用8个,每个按钮都可以绑定不同的事件。<br>vla配置按钮名称，class按钮样式，ope按钮事件</p>
+	<input type="button" value="8组按钮" onClick="$.Pop('按钮效果',{
+		Btn:{
+		yes:{vla:'是',class:'btn btn-primary',ope:function(){alert('点击的是')},},
+		no:{vla:'否',class:'btn btn-primary',ope:function(){alert('点击的否')},},
+		cancel:{vla:'取消',class:'btn btn-primary',ope:function(){alert('点击的取消')},},
+		bnt1:{vla:'按钮1',class:'btn btn-primary',ope:function(){alert('点击的按钮1')},},
+		bnt2:{vla:'按钮2',class:'btn btn-primary',ope:function(){alert('点击的按钮2')},},
+		bnt3:{vla:'按钮3',class:'btn btn-primary',ope:function(){alert('点击的按钮3')},},
+		bnt4:{vla:'按钮4',class:'btn btn-primary',ope:function(){alert('点击的按钮4')},},
+		bnt5:{vla:'按钮5',class:'btn btn-primary',ope:function(){alert('点击的按钮5')},},
+		}})">
+	</div>
+	<div class="div3">
+		$.Pop('按钮效果',{<br>
+	Btn:{<br>
+		yes:{vla:"",class:"",ope:function(){},},<br>
+		no:{vla:"",class:"",ope:function(){},},<br>
+		cancel:{vla:"",class:"",ope:function(){},},<br>
+		bnt1:{vla:"",class:"",ope:function(){},},<br>
+		bnt2:{vla:"",class:"",ope:function(){},},<br>
+		bnt3:{vla:"",class:"",ope:function(){},},<br>
+		bnt4:{vla:"",class:"",ope:function(){},},<br>
+		bnt5:{vla:"",class:"",ope:function(){},},<br>
+		}<br>
+	
+	})</div>
+	
+	
+	
+	<div class="div2" id="cssys"><p><b>更多的配置选项</b></p>
+	<p>$.Pop('按钮',{<br>
+		Title:"来自Pop插件的通知",<b>//标题</b><br> 
+		Close:true,<b>//是否显示关闭按钮 true(开)/false(关)</b><br> 
+		Animation:"layerFadeIn",<b>// 默认动画</b><br> 
+		BoxBg:true,<b> // 是否显示遮罩背景层 true(开)/false(关)</b><br>
+		BoxDrag:true,<b> // 是否可以移动弹出层 true(开)/false(关)</b><br>
+		BoxBgopacity:0.6,<b> // 遮罩层的透明度 0-1 0完全透明1完全黑暗</b><br>
+		ZIndex:99999,<b> // 弹出层的cssz-index属性</b><br>
+		Class:false, <b>// 是否叠加css样式</b><br> 
+		Btn:{}<b>// 按钮</b><br>
+		
+		});
+		</p>
+	<input type="button" value="禁止拖动" onClick="$.Pop('禁止拖动效果',{BoxDrag:false})">
+	<input type="button" value="隐藏关闭按钮" onClick="$.Pop('隐藏关闭按钮',{Close:false})">
+	<input type="button" value="取消背景遮罩层" onClick="$.Pop('取消背景遮罩层',{BoxBg:false})">
+	<input type="button" value="叠加本页面预设的CSS样式" onClick="$.Pop('叠加本页面预设的CSS样式',{Class:'yushe'})">
+		<p>下面是预设的CSS，只为看出区别所以随便写的，每行必须以!important强制使用为结尾。</p>
+	</div>
+	<div class="div3">	.yushe{
+		background-color: #555!important;
+		color:#fff!important;
+	}<br>
+	.yushe .box-title{
+		color:#fff!important;
+	}</div>
+	<h1>$.Pro()介绍</h1>
+	<div class="div2" id="pro">
+	<p>Pro是一个自动提醒的小插件，非常小巧，常常用于验证反馈使用</p>
+	<input type="button" value="演示" onClick="$.Pro('演示效果')">
+	</div>
+	<div class="div3">$.Pro('演示效果')</div>
+	<div class="div2"><p>参数配置：<br>
+		$.Pro('演示效果',{<br>
+		Img:false,<b>// 是否添加一个图片 ，添加格式，Img："img/a.jpg"</b><br>
+		ImgWh:"150*150",<b>// 图片大小 格式,宽*高，默认100*100</b><span onClick="alert('因为JQ无法获取到图片大小，所以需要手动定义下，不然会出现弹出位置异常的问题，一般150*150够用了 如果不够用请手动定义下')" style="padding-left: 5px; font-size: 12px; color: #444; cursor: pointer;">点击我查看原因</span><br>
+		BoxBgopacity:0.8,<b>//背景色的透明度 0为完全透明1为完全不透明</b><br>
+		ZIndex:99999<b>//css的z-index属性</b><br>
+		Time:3,<b>// 延迟关闭的时间</b><br>
+		StartOn:false,<b>// 插件开始时执行的事件，格式StartOn:function(){**你要执行的代码**}</b><br>
+		EndOn:false,<b>// 插件结束时执行的事件，格式StartOn:function(){**你要执行的代码**}</b><br>
+		Class:false,<b>// 叠加的CSS样式，用法与Pop样式叠加一直</b><a href="#cssys" style="padding-left: 5px; font-size: 12px; color: #444; cursor: pointer;">查看PopCSS样式叠加</a><br>
+		});</p>
+	
+	<input type="button" value="有图片展示的" onClick="$.Pro('图片是从jq22.com偷来的~！',{
+										Img:'http://www.jq22.com/tx/0.png'		   
+												   })">
+	<input type="button" value="增加绑定事件" onClick="$.Pro('事件绑定效果',{
+											StartOn:function(){alert('这是插件开始前执行的操作')},	 
+											EndOn:function(){alert('这是插件结束后执行的操作')}	 
+												 })">
+	<input type="button" value="完全不透明" onClick="$.Pro('完全不透明',{BoxBgopacity:1})">	
+	<input type="button" value="几乎完全透明" onClick="$.Pro('几乎完全透明',{BoxBgopacity:0.1})">
+	<input type="button" value="完全透明带图片" onClick="$.Pro('',{BoxBgopacity:0,Img:'http://www.jq22.com/tx/0.png'})">
+	
+	</div>
+	
+	<div class="div2" id="gd"><p>仅供参考，后续会慢慢更新上更多的插件用法。<br>希望大家能够用到~！</p></div>
+	</div>
+
+</body>
+</html>
+<script>
+	
+</script>

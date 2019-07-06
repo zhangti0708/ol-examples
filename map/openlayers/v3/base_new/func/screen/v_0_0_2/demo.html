@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<script type="text/javascript" src="../../../plugin/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="../../../encapsulation/js/auxiliary/auxiliary.js"></script>
+	<script type="text/javascript" src="../../../plugin/popupPrompt/plug-in.js"></script>
+	
+	<script type="text/javascript" src="../../../func/screen/v_0_0_2/event/base_search_func.js"></script>
+	<script type="text/javascript" src="element/base_search.js"></script>
+	<script type="text/javascript">
+		var auxiliaryParam = new auxiliary();
+		var ce = new createElement();
+		ce.init({'auxiliary':auxiliaryParam});
+		var eject = {
+				popup: function(str,func){
+					$.Pop('str','alert',func)
+				},
+				prompt:function(str,param){
+					$.Pro(str,param)
+				}
+		}
+		var bsf = new baseSearchFunc();
+		bsf.init({'auxiliary':auxiliaryParam,'eject':eject})
+	</script>
+	<script type="text/javascript">
+		// 文本输入框示例
+		ce.build({'business':{ 'type': "0"  ,'pId': "body" ,
+			'propertychange': function(){
+				console.log(132);
+			}
+		},'attribute':{'id':"sixgodTest",'value':0,'type':"text"}})
+	</script>
+	<script type="text/javascript">
+		// radio 单选框示例
+		ce.build({
+			'business':{ 'type': "0"  ,'pId': "body"},
+			'attribute':{'id':"redioTest1",'value':0,'type':"radio",'name':"radio"}
+		})
+		ce.build({
+			'business':{ 'type': "0"  ,'pId': "body"},
+			'attribute':{'id':"redioTest2",'value':0,'type':"radio",'name':"radio",'checked':'checked'}
+		})
+	</script>
+	<script type="text/javascript">
+		// checkbox 复选框示例
+		ce.build({
+			'business':{ 'type': "0"  ,'pId': "body"},
+			'attribute':{'id':"checkboxTest1",'value':0,'type':"checkbox",'name':"checkbox"}
+		})
+		ce.build({
+			'business':{ 'type': "0"  ,'pId': "body"},
+			'attribute':{'id':"checkboxTest2",'value':0,'type':"checkbox",'name':"checkbox"}
+		})
+	</script>
+	<script type="text/javascript" src="../../../plugin/date/laydate3.js"></script>
+	<script type="text/javascript">
+		// 时间插件的运用
+		ce.build({
+			'business':{ 'type': "1"  ,'pId': "body"},
+			'attribute':{'id':"sixgod1"},
+			'plugin':{elem: '#sixgod1'}
+		})
+	</script>
+	<script type="text/javascript">
+		// 下拉选创建示例
+		ce.build({
+			'business':{ 'type': "2"  ,'pId': "body",'data':[{'name':"待选择",'id':"optionID"},{'name':"test1",'id':"optionID1"},{'name':"test2",'id':"optionID2"}]},
+			'attribute':{'id':"selectTestId"}
+		})
+	</script>
+	<script type="text/javascript">
+		// div选择框创建示例
+		ce.build({
+			'business':{ 'type': "3"  ,'pId': "body",'data':[{'name':"全部",'id':"divSelectID"},{'name':"test1",'id':"divSelectID1"},{'name':"test2",'id':"divSelectID2"}]},
+			'attribute':{'id':"divSelectTest1"}
+		})
+	</script>
+	<script type="text/javascript">
+		// 输入框整合事件成为数值输入框
+		ce.build({'business':{ 'type': "0"  ,'pId': "body" ,
+			'blur': bsf.build({'type':"0"})
+		},'attribute':{'id':"sixgodTest13asd",'value':123,'type':"text"}})
+	</script>
+	<script type="text/javascript">
+		// div选择栏整合点击事件
+		ce.build({
+			'business':{ 'type': "3"  ,'pId': "body",'data':[{'name':"全部"},{'name':"test1"},{'name':"test2"}],'click': bsf.build({'type':"1"})},
+			'attribute':{'id':"divSelectTest2"}
+		})
+	</script>
+	<script type="text/javascript">
+		// 时间插件：时间段
+		ce.build({
+			'business':{ 'type': "1"  ,'pId': "body"},
+			'attribute':{'id':"sixgod2"},
+			'plugin':{elem: '#sixgod2',range: true}
+		})
+	</script>
+	<script type="text/javascript">
+		// div标签
+		var dataparam1 = {
+				'business':{ 'type': "6"  ,'pId': "body",
+					'nextLevel':{
+						'business':{'next':{
+								'business':{
+									'nextLevel':{
+										'business':{},
+										'attribute':{'id':"divLabelTest2_1_2_1","name":"乡镇区划"}
+									}
+								},
+								'attribute':{'id':"divLabelTest2_1_2"}
+							}
+						},
+						'attribute':{'id':"divLabelTest2_1_1","name":"筛选条件"}
+					}
+				},
+				'attribute':{'id':"divLabelTest2_1"}
+			}
+		ce.build(dataparam1)
+	</script>
+	<script type="text/javascript">
+		// 筛选栏
+		var dataparam2 = {
+				'business':{ 'type': "4"  ,'pId': "body",
+					'nextLevel' : {
+						'business':{ 'type': "4"  ,'pId': "body",
+							'next' : 
+							{
+								'business':{ 'type': "4"  ,'pId': "body",
+									'nextLevel' : 
+									{
+										'business':{ 'type': "0"  ,'pId': "body" ,'propertychange': function(){ onsole.log(this.val());}},
+										'attribute':{'id':"searchBox_1_2_1",'value':"sixgod",'type':"text"}
+									}
+								},
+								'attribute':{'id':"searchBox_1_2"}
+							}
+						},
+						'attribute':{'id':"searchBox_1_1","name":"行政区划:"}
+					}
+				},
+				'attribute':{'id':"searchBox"}
+		}
+		ce.moreBuild(dataparam2)
+	</script>
+</body>
+</html>
